@@ -10,16 +10,18 @@ const App = props => {
   //   price: 1000
   // }
 
-  const [name, setName] = useState(props.name)
-  const [price, setPrice] = useState(props.price)
+  //オブジェクトも取れる
+  const [state, setState] = useState(props)
+  // const [name, setName] = useState(props.name)
+  // const [price, setPrice] = useState(props.price)
 
   return (
     <>
-      <p>現在の「{name}」の価格は、{price}円です</p>
-      <button onClick= {() => setPrice(price + 100)}>+100</button>
-      <button onClick= {() => setPrice(price - 100)}>-100</button>
-      <button onClick= {() => setPrice(props.price)}>reset</button>
-      <input value={name} onChange={e => setName(e.target.value)}/>
+      <p>現在の「{state.name}」の価格は、{state.price}円です</p>
+      <button onClick= {() => setState({...state, price: state.price + 100})}>+100</button>
+      <button onClick= {() => setState({...state, price: state.price - 100})}>-100</button>
+      <button onClick= {() => setState(props)}>reset</button>
+      <input value={state.name} onChange={e => setState({...state, name: e.target.value})}/>
     </>
   )
 }
