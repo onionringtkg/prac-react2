@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 //Hooksの学習
 //-----------------------------------------複数をuseStateする---------------------------------------------
@@ -14,6 +14,17 @@ const App = props => {
   const [state, setState] = useState(props)
   // const [name, setName] = useState(props.name)
   // const [price, setPrice] = useState(props.price)
+
+  //コールバックはuseEffect
+  useEffect(() => {
+    console.log('useEffect likes componentDidMount or componentDidUpdate.');
+  })
+  useEffect(() => {
+    console.log('useEffect likes componentDidMount only when loaded.');
+  }, [])
+  useEffect(() => {
+    console.log('useEffect only when name is changed.');
+  }, [state.name])
 
   return (
     <>
